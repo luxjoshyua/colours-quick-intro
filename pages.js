@@ -18,15 +18,20 @@ const pages = [
 
   // if not special characters, needs to be contained in ""
   // this is the array
-  "amateur creative coder", 
-  "John Maus",
-  "March",
-  "download my pdf",
-  "another page here if ich mägst",
-  "ditto to the above innit'"
+
+  {copy: 'a Sydney-based amateur creative coder', background: '#edc7a9', circle: '#3e78ed'},
+  
+  // do "" if using an apostrophe 
+  {copy: "John Maus's biggest fan", background: '#a1fffe', circle: '#e34a47'},
+
+  {copy: 'looking for a cool creative coding internship now!', background: '#d3c7f3', circle: '#f7fe00'},
+
+  {copy: `encouraging you to <a href="https://drive.google.com/open?id=1qRDfufT8CwV4cR-VgM9NEwmzG5z4TVnE">download his PDF</a>`, background: '#faffb8', circle: '#b472e6' },
+
+  {copy: `his portfolio is at <a target="blank" href="http://luxjoshyua.superhi.com/">luxjoshyua</a> (check out the <a target="blank" href="https://effects-luxjoshyua.superhi.com/">effects</a> and <a target="blank" href="https://projects-luxjoshyua-new.superhi.com/">projects)</a> and his
+  github at <a target="blank" href="https://github.com/luxjoshyua">luxjoshyua</a> again`, background: '#b7eee2', circle: '#b7ee' },
 
 ]
-
 
 // FIRST SECTION = PICK THE RELEVANT TAGS
 
@@ -37,7 +42,16 @@ const nextTag = document.querySelector('footer img.next')
 
 const previousTag = document.querySelector("footer img.prev")
 
+const randomTag = document.querySelector("footer img.random")
+
 const outputTag = document.querySelector('h2')
+
+
+// change the circle color
+const circleTag = document.querySelector("section div.circle")
+
+// change the background-color
+const bodyTag = document.querySelector("body")
 
 
 // SECOND SECTION = FUNCTIONS
@@ -52,6 +66,16 @@ const next = function () {
     pageNumber = 0
 
   }
+  updateSection()
+}
+
+
+// pick a random slide
+
+const random = function () {
+
+  pageNumber = Math.floor( Math.random() * pages.length )
+
   updateSection()
 }
 
@@ -73,8 +97,13 @@ const previous = function () {
 // this will update the section's content and style
 const updateSection = function () {
   // outputTag.innerHTML = pageNumber
-  
-  outputTag.innerHTML = pages[pageNumber]
+  // .copy adds in the different text for each slide
+
+  outputTag.innerHTML = pages[pageNumber].copy 
+
+  circleTag.style.backgroundColor = pages[pageNumber].circle
+
+  bodyTag.style.backgroundColor = pages[pageNumber].background
 }
 
 
@@ -99,4 +128,34 @@ nextTag.addEventListener('click', function () {
 
 previousTag.addEventListener("click", function () {
   previous()
+})
+
+
+// on click of randomTag, run this
+
+randomTag.addEventListener('click', function () {
+
+  // run the random function 
+  random()
+
+})
+
+// when a user presses a key, check for arrow left or right and do next or prev correctly
+
+// document because we want to select the entire page
+document.addEventListener("keyup", function (event) {
+
+  console.log(event)
+
+  // if the key being pressed is ArrowRight
+  // one = assigns something, == is doing a check
+  if (event.key == "ArrowRight") {
+    next()
+  }
+
+  // if the key being pressed is ArrowLeft
+
+  if (event.key == "ArrowLeft") {
+    previous()
+  }
 })

@@ -1,25 +1,21 @@
 @font-face {
   font-family: 'Bluu Next';
   src: url('bluunext.woff2'), url('bluunext.woff') format('woff');
-        font-weight: normal;
-        font-style: normal; 
+  font-weight: normal;
+  font-style: normal;
 }
-
-
-
 
 body {
   font-family: 'Bluu Next', Times New Roman;
   font-size: 24px;
   line-height: 1.25;
-
   background-color: #edc7a9;
   background-image: linear-gradient(180deg, #fff, rgba(255, 255, 255, 0));
-
   color: #000;
-
   height: 100vh;
+  transition: background-color 0.5s ease-in;
 }
+
 
 h1 {
   font-size: 24px;
@@ -42,12 +38,22 @@ section {
 }
 
 section div.circle {
-  width:  20px;
+  width: 20px;
   height: 20px;
-  background-color: #3e78ed; 
-	border-radius: 50%;
-/* makes it listen to text-align center above   */
+  background-color: #3e78ed;
+  border-radius: 50%;
+  /* makes it listen to text-align center above   */
   display: inline-block;
+  transition: background-color 0.5s ease-in;
+}
+
+section a {
+  color: #000;
+  text-decoration: none; 
+}
+
+section a:hover {
+  cursor: pointer;
 }
 
 footer {
@@ -56,7 +62,7 @@ footer {
   left: 0;
   width: 100%;
   padding: 30px;
-  
+
   display: flex;
   /* moves the icons into the center of the page   */
   justify-content: center;
@@ -65,4 +71,5 @@ footer {
 
 footer img {
   margin: 0px 10px 0px 10px;
+  cursor: pointer;
 }
